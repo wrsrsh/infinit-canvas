@@ -2,12 +2,17 @@
   "name": "infinite-canvas",
   "private": true,
   "packageManager": "yarn@1.22.22",
-  "workspaces": ["apps/*", "packages/*"],
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
     "dev:html": "yarn workspace infinite-canvas-html dev",
-    "dev:react": "yarn workspace infinite-canvas-react dev"
+    "dev:react": "yarn workspace infinite-canvas-react dev",
+    "postinstall": "node scripts/apply-security-patches.cjs",
+    "test:security": "node scripts/apply-security-patches.cjs --verify"
   },
   "devDependencies": {
     "turbo": "^2.4.0"
@@ -15,5 +20,10 @@
   "optionalDependencies": {
     "@esbuild/linux-x64": "^0.25.0",
     "@rollup/rollup-linux-x64-gnu": "^4.0.0"
+  },
+  "resolutions": {
+    "@fastify/busboy": "^3.2.2",
+    "postcss": "^8.5.23",
+    "undici": "^6.28.1"
   }
 }
